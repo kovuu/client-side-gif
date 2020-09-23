@@ -10,10 +10,6 @@ export class ServerApiService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(data): Observable<any> {
-    return this.http.post('http://localhost:4000/register', data);
-  }
-
   getUsers(): Observable<any> {
     this.headers = new HttpHeaders();
     this.headers.append('Authorization', localStorage.getItem('token'));
@@ -30,6 +26,10 @@ export class ServerApiService {
   }
 
   getUser(userId): Observable<any> {
-    return this.http.get(`http://localhost:4000/users/${userId}`);
+    return this.http.get(`htp://localhost:4000/users/${userId}`);
+  }
+
+  registerUser(data): Observable<any> {
+    return this.http.post('http://localhost:4000/register', data);
   }
 }
