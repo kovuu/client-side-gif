@@ -28,4 +28,8 @@ export class ServerApiService {
   loginUser(data): Observable<any> {
     return this.http.post('http://localhost:4000/login', data);
   }
+
+  getUser(userId): Observable<any> {
+    return this.http.get(`http://localhost:4000/users/${userId}`);
+  }
 }
