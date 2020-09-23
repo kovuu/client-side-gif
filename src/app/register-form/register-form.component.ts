@@ -22,7 +22,9 @@ export class RegisterFormComponent {
 
   registerUser(data): void {
     this.service.registerUser(data).subscribe(res => {
-      console.log(res);
+      if (res) {
+        this.route.navigate(['login']);
+      }
     });
   }
 }

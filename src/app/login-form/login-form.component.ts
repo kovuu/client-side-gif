@@ -25,6 +25,7 @@ export class LoginFormComponent implements OnInit {
 
   loginUser(data): void {
     this.service.loginUser(data).subscribe(res => {
+      console.log(res);
       localStorage.setItem('token', `bearer ${res.token}`);
       localStorage.setItem('userId', res.id);
       console.log(localStorage.getItem('token'));
