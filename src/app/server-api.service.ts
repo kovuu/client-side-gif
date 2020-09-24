@@ -11,14 +11,7 @@ export class ServerApiService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any> {
-    this.headers = new HttpHeaders();
-    this.headers.append('Authorization', localStorage.getItem('token'));
-
-    return this.http.get('http://localhost:4000/users', {
-      headers: new HttpHeaders({
-        Authorization: localStorage.getItem('token')
-      })
-    });
+    return this.http.get('http://localhost:4000/users');
   }
 
   loginUser(data): Observable<any> {

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-import {FormBuilder} from '@angular/forms';
+import { Component } from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ServerApiService} from '../server-api.service';
 
@@ -9,26 +8,39 @@ import {ServerApiService} from '../server-api.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
   loginForm;
+  message: string;
+  status = false;
 
   constructor(private formBuilder: FormBuilder, private service: ServerApiService, private route: Router) {
     this.loginForm = this.formBuilder.group({
-      name: '',
-      password: ''
+      name: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
-
-  ngOnInit(): void {
-  }
-
 
   loginUser(data): void {
-    this.service.loginUser(data).subscribe(res => {
-      console.log(res);
-      localStorage.setItem('token', `bearer ${res.token}`);
-      localStorage.setItem('userId', res.id);
-      console.log(localStorage.getItem('token'));
-    });
+    if (this.loginForm.dirty && data.name && data.password) {
+        this.service.loginUser(data).subscribe(res => {
+          localStorage.setItem('token', `bearer ${res.token}`);
+          localStorage.setItem('userId', res.id);
+          this.status = true;
+          this.message = 'Successful login!';
+        },
+          error => {
+          this.status = false;
+          this.message = error.reason;
+        });
+        this.loginForm.reset();
+    }
+  }
+
+  get name(): any {
+    return this.loginForm.get('name');
+  }
+
+  get password(): any {
+    return this.loginForm.get('password');
   }
 }
