@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {ServerApiService} from '../server-api.service';
+import {ServerApiService} from '../../server-api.service';
 
 @Component({
   selector: 'app-users-list',

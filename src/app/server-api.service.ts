@@ -25,4 +25,10 @@ export class ServerApiService {
   registerUser(data): Observable<any> {
     return this.http.post('http://localhost:4000/register', data);
   }
+
+  uploadImage(image): Observable<any> {
+    const uploadData = new FormData();
+    uploadData.append('image', image);
+    return this.http.post('http://localhost:4000/upload', uploadData);
+  }
 }

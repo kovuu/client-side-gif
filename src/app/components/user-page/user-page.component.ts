@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ServerApiService} from '../server-api.service';
+import {ServerApiService} from '../../server-api.service';
 
 @Component({
   selector: 'app-user-page',

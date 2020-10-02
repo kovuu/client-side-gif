@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {ServerApiService} from '../server-api.service';
+import {ServerApiService} from '../../server-api.service';
 
 @Component({
   selector: 'app-login-form',
@@ -27,6 +27,7 @@ export class LoginFormComponent {
           localStorage.setItem('userId', res.id);
           this.status = true;
           this.message = 'Successful login!';
+          this.route.navigate(['']);
         },
           error => {
           this.status = false;
