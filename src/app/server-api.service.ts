@@ -8,7 +8,8 @@ import {Observable} from 'rxjs';
 export class ServerApiService {
   private headers: HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getUsers(): Observable<any> {
     return this.http.get('http://localhost:4000/users');
@@ -30,5 +31,14 @@ export class ServerApiService {
     const uploadData = new FormData();
     uploadData.append('image', image);
     return this.http.post('http://localhost:4000/upload', uploadData);
+  }
+
+  uploadImgFromLink(data): Observable<any> {
+
+    return this.http.post('http://localhost:4000/upload_from_link', data);
+  }
+
+  getAllImages(): Observable<any> {
+    return this.http.get('http://localhost:4000/images');
   }
 }

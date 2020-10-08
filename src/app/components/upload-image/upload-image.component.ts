@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ServerApiService} from '../../server-api.service';
 import {ImageService} from '../../image.service';
+import {Router} from '@angular/router';
+import {TestServiceService} from '../../test-service.service';
+import set = Reflect.set;
 
 @Component({
   selector: 'app-upload-image',
@@ -15,7 +18,7 @@ export class UploadImageComponent implements OnInit {
   message: string;
   status = false;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ServerApiService, private imageService: ImageService) {
+  constructor(private formBuilder: FormBuilder, private apiService: ServerApiService,  private route: Router, private testService: TestServiceService) {
     this.uploadForm = this.formBuilder.group({
       image: [''],
       image_url: ['']
@@ -39,27 +42,31 @@ export class UploadImageComponent implements OnInit {
 
   downloadImage(event): void {
     this.imageLink = event.target.value.trim();
-    this.imageService.getImage(this.imageLink).subscribe(res => {
-      this.selectedImage = this.blobToFile(res, 'image');
-    });
   }
 
-  uploadImage(): void {
-
-    let image;
+  uploadImage(data): void {
+    console.log(this.selectedImage);
     if (this.selectedImage) {
-      image = this.selectedImage;
-    } else {
-      image = this.imageLink;
-    }
+      this.apiService.uploadImage(this.selectedImage).subscribe(r => {
+        this.status = true;
+        this.message = r.message;
+        this.testService.subject$.next(true);
+      }, error => {
+        this.status = false;
+        this.message = error.reason.message;
+      });
+    } else if (this.imageLink) {
+      this.apiService.uploadImgFromLink(data).subscribe(r => {
+        this.status = true;
+        this.message = r.message;
+        this.testService.subject$.next(true);
 
-    this.apiService.uploadImage(image).subscribe(r => {
-      this.status = true;
-      this.message = r.message;
-    }, error => {
-      this.status = false;
-      this.message = error.reason.message;
-    });
+      }, error => {
+        this.status = false;
+        this.message = error.reason.message;
+
+      });
+    }
     this.uploadForm.reset();
     this.imageLink = '';
     this.selectedImage = null;

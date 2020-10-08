@@ -1,5 +1,5 @@
 <p>Загрузите фотографию по ссылке или с компьютера</p>
-<form [formGroup]="uploadForm" (ngSubmit)="uploadImage()" enctype="multipart/form-data">
+<form [formGroup]="uploadForm" (ngSubmit)="uploadImage(uploadForm.value)" enctype="multipart/form-data">
   <div class="form-group">
     <label for="image">С компьютера</label>
     <input
