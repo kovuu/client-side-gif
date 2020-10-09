@@ -1,0 +1,38 @@
+.header {
+  background: skyblue;
+  padding: 1rem 2rem;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  border-radius: 0 0 5px 5px;
+
+}
+
+.header-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.menu-link {
+  margin-right: 5rem;
+  display: inline-block;
+  padding: .5rem;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.menu-link:hover {
+  color: lightgray;
+}
+
+.login-block .menu-link {
+  margin-right: 1rem;
+}

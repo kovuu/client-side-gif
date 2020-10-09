@@ -15,6 +15,8 @@ import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { ImagesBlockComponent } from './components/images-block/images-block.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ImagesBlockComponent } from './components/images-block/images-block.com
     ErrorMsgComponent,
     AlertComponent,
     UploadImageComponent,
-    ImagesBlockComponent
+    ImagesBlockComponent,
+    HeaderComponent,
+    ProfileComponent
   ],
     imports: [
         BrowserModule,

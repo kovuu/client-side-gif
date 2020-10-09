@@ -13,13 +13,28 @@ export class ImagesBlockComponent implements OnInit {
   constructor(private service: ServerApiService, private testService: TestServiceService) { }
 
   ngOnInit(): void {
-    this.service.getAllImages().subscribe(r => this.allImages = r);
+    this.service.getAllImages().subscribe(r => {
+      console.log(r);
+      this.allImages = r;
+    });
     this.testService.subject$.subscribe((data) => {
       this.service.getAllImages().subscribe(r => {
+
         this.allImages = r;
       });
     });
   }
 
+  buttonClickHeader(isFavourite, imgId): void {
+    isFavourite ? this.removeImgFromFavorites(imgId) : this.addImgToFavourites(imgId);
+  }
+
+  addImgToFavourites(imgId): void {
+      this.service.addImgToFavorites(imgId).subscribe(r => this.testService.subject$.next(true));
+  }
+
+  removeImgFromFavorites(imgId): void {
+    this.service.removeImgFromFavorites(imgId).subscribe(r => this.testService.subject$.next(true));
+  }
 
 }
