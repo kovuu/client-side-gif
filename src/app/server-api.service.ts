@@ -29,9 +29,12 @@ export class ServerApiService {
     return this.http.post(this.baseURL + '/register', data);
   }
 
-  uploadImage(image): Observable<any> {
+  uploadImage(image, data): Observable<any> {
     const uploadData = new FormData();
     uploadData.append('image', image);
+    console.log(data.tags);
+    uploadData.append('tags', data.tags);
+    console.log(uploadData.get('tags'));
     return this.http.post(this.baseURL + '/upload', uploadData);
   }
 
@@ -56,5 +59,9 @@ export class ServerApiService {
 
   getFavouriteUserImages(): Observable<any> {
     return this.http.get(this.baseURL + '/profile/images');
+  }
+
+  getAllImagesByTag(): Observable<any> {
+    return this.http.get(this.baseURL + '/images');
   }
 }

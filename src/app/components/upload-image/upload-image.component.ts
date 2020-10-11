@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ServerApiService} from '../../server-api.service';
-import {ImageService} from '../../image.service';
 import {Router} from '@angular/router';
 import {TestServiceService} from '../../test-service.service';
-import set = Reflect.set;
 
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
   styleUrls: ['./upload-image.component.css']
 })
-export class UploadImageComponent implements OnInit {
+export class UploadImageComponent  {
   uploadForm;
   selectedImage: File;
   imageLink: string;
@@ -21,11 +19,9 @@ export class UploadImageComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private apiService: ServerApiService,  private route: Router, private testService: TestServiceService) {
     this.uploadForm = this.formBuilder.group({
       image: [''],
-      image_url: ['']
+      image_url: [''],
+      tags: ['']
     });
-  }
-
-  ngOnInit(): void {
   }
 
   onFileChanged(event): void {
@@ -45,26 +41,17 @@ export class UploadImageComponent implements OnInit {
   }
 
   uploadImage(data): void {
-    console.log(this.selectedImage);
     if (this.selectedImage) {
-      this.apiService.uploadImage(this.selectedImage).subscribe(r => {
-        this.status = true;
-        this.message = r.message;
-        this.testService.subject$.next(true);
+      this.apiService.uploadImage(this.selectedImage, data).subscribe(r => {
+        this.getResponse(r);
       }, error => {
-        this.status = false;
-        this.message = error.reason.message;
+        this.getErrorResponse(error);
       });
     } else if (this.imageLink) {
       this.apiService.uploadImgFromLink(data).subscribe(r => {
-        this.status = true;
-        this.message = r.message;
-        this.testService.subject$.next(true);
-
+        this.getResponse(r);
       }, error => {
-        this.status = false;
-        this.message = error.reason.message;
-
+        this.getErrorResponse(error);
       });
     }
     this.uploadForm.reset();
@@ -72,4 +59,16 @@ export class UploadImageComponent implements OnInit {
     this.selectedImage = null;
   }
 
+  private getResponse(response): void {
+    this.status = true;
+    this.message = response.message;
+    this.testService.subject$.next(true);
+  }
+
+  private getErrorResponse(error): void {
+    this.status = false;
+    this.message = error.reason.message;
+  }
 }
+
+

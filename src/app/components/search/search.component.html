@@ -1,0 +1,7 @@
+<form [formGroup]="searchForm" (ngSubmit)="searchByTags(searchForm.value)" enctype="multipart/form-data">
+  <div class="form-group">
+    <label  for="tags">Поиск по тегам</label>
+    <input id="tags" type="text" formControlName="tags">
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>

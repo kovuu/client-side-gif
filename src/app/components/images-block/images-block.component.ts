@@ -1,6 +1,8 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ServerApiService} from '../../server-api.service';
 import {TestServiceService} from '../../test-service.service';
+import {HelperService} from "../../helper.service";
+import {mergeMap, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-images-block',
@@ -8,21 +10,14 @@ import {TestServiceService} from '../../test-service.service';
   styleUrls: ['./images-block.component.css']
 })
 export class ImagesBlockComponent implements OnInit {
+  @Input()
   allImages;
 
-  constructor(private service: ServerApiService, private testService: TestServiceService) { }
+
+  constructor(private service: ServerApiService, private testService: TestServiceService, private helperService: HelperService) { }
 
   ngOnInit(): void {
-    this.service.getAllImages().subscribe(r => {
-      console.log(r);
-      this.allImages = r;
-    });
-    this.testService.subject$.subscribe((data) => {
-      this.service.getAllImages().subscribe(r => {
 
-        this.allImages = r;
-      });
-    });
   }
 
   buttonClickHeader(isFavourite, imgId): void {
@@ -30,11 +25,11 @@ export class ImagesBlockComponent implements OnInit {
   }
 
   addImgToFavourites(imgId): void {
-      this.service.addImgToFavorites(imgId).subscribe(r => this.testService.subject$.next(true));
+      this.service.addImgToFavorites(imgId).subscribe(r => this.helperService.updateAllImages());
   }
 
   removeImgFromFavorites(imgId): void {
-    this.service.removeImgFromFavorites(imgId).subscribe(r => this.testService.subject$.next(true));
+    this.service.removeImgFromFavorites(imgId).subscribe(r => this.helperService.updateAllImages());
   }
 
 }

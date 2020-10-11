@@ -17,6 +17,7 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
 import { ImagesBlockComponent } from './components/images-block/images-block.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     UploadImageComponent,
     ImagesBlockComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent
   ],
     imports: [
         BrowserModule,
