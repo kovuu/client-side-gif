@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import {ServerApiService} from "../../server-api.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {ServerApiService} from '../../server-api.service';
+import {HelperService} from "../../helper.service";
 
 @Component({
   selector: 'app-search',
@@ -10,7 +11,10 @@ import {ServerApiService} from "../../server-api.service";
 export class SearchComponent implements OnInit {
   searchForm;
 
-  constructor(private formBuilder: FormBuilder, private service: ServerApiService) {
+  @Output()
+  tags = new EventEmitter<string>();
+
+  constructor(private formBuilder: FormBuilder, private service: ServerApiService, private helperService: HelperService) {
     this.searchForm = this.formBuilder.group({
       tags: ['']
     });
@@ -20,6 +24,9 @@ export class SearchComponent implements OnInit {
   }
 
   searchByTags(data): void {
+    console.log(31);
+    this.tags.emit(data.tags);
+    // this.helperService.filteredByTagsImages$.next();
   }
 
 }
