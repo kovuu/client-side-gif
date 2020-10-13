@@ -16,6 +16,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getAllImages().subscribe(r => {
+      console.log(r)
       this.allImages = r;
     });
     this.helperService.allImages$.pipe(

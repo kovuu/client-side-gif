@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ServerApiService} from '../../server-api.service';
-import {HelperService} from "../../helper.service";
-import {mergeMap} from "rxjs/operators";
+import {HelperService} from '../../helper.service';
+import {mergeMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -18,13 +18,17 @@ export class ProfileComponent implements OnInit {
     });
     this.helperService.favouriteImages$.pipe(
       mergeMap(r => this.service.getFavouriteUserImages())
-    ).subscribe(res => this.allImages = res);
+    ).subscribe(res => {
+      this.allImages = res;
+    });
   }
 
   removeFromFavorites(imageId): void  {
     this.service.removeImgFromFavorites(imageId).subscribe(r => {
-        this.helperService.updateFavouriteImages();
+      this.helperService.updateFavouriteImages();
     });
+
+
   }
 
 }

@@ -42,8 +42,6 @@ export class ServerApiService {
     return this.http.post(this.baseURL + '/upload_from_link', data);
   }
 
-
-
   addImgToFavorites(imgId): Observable<any> {
     return this.http.put(this.baseURL + '/toFavs', {imgId});
   }
