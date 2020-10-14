@@ -1,12 +1,14 @@
 .images-block {
   display: flex;
-  width: 100%;
-  flex-direction: row;
+  margin: 0 10px;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
 .image {
+  flex: 0 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
   margin-bottom: 3rem;
   display: flex;
   flex-direction: column;

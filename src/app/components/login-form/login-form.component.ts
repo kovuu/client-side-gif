@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ServerApiService} from '../../server-api.service';
+import {HelperService} from '../../helper.service';
 
 @Component({
   selector: 'app-login-form',
@@ -13,7 +14,8 @@ export class LoginFormComponent {
   message: string;
   status = false;
 
-  constructor(private formBuilder: FormBuilder, private service: ServerApiService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, private service: ServerApiService,
+              private route: Router, private helperService: HelperService) {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
       password: ['', Validators.required]
@@ -27,6 +29,7 @@ export class LoginFormComponent {
           localStorage.setItem('userId', res.id);
           this.status = true;
           this.message = 'Successful login!';
+          this.helperService.updateLoginStatus();
           this.route.navigate(['']);
         },
           error => {

@@ -1,12 +1,4 @@
-<div>
+<div class="main-div">
   <h1>My favourites gif</h1>
-  <div class="images-block" >
-    <div *ngFor="let image of allImages" class="image">
-      <img *ngIf="image.path" [src]="'http://localhost:4000/'+image.path"  alt="12">
-      <button (click)="removeFromFavorites(image.id)" class="btn btn-primary">
-        <span>Remove from Favourites</span>
-      </button>
-    </div>
-  </div>
-
+  <app-images-block [allImages]="allImages" [favourite]="true" [removeFromFavourite]="removeFromFavorites"></app-images-block>
 </div>

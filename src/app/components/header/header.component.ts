@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HelperService} from "../../helper.service";
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   userId = localStorage.getItem('userId');
-  constructor() {}
+  constructor(private helperService: HelperService) {}
 
   ngOnInit(): void {
-    console.log(this.userId);
+    console.log(localStorage.getItem('userId'));
+    this.helperService.loginStatus$.subscribe(r => this.userId = localStorage.getItem('userId'));
   }
 
 

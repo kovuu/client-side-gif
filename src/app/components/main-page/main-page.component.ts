@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {mergeMap} from 'rxjs/operators';
 import {ServerApiService} from '../../server-api.service';
 import {HelperService} from '../../helper.service';
@@ -10,13 +10,12 @@ import {HelperService} from '../../helper.service';
 })
 export class MainPageComponent implements OnInit {
   allImages: object;
-  test = 'qwerty';
+
   constructor(private service: ServerApiService, private helperService: HelperService) { }
 
 
   ngOnInit(): void {
     this.service.getAllImages().subscribe(r => {
-      console.log(r)
       this.allImages = r;
     });
     this.helperService.allImages$.pipe(
@@ -33,7 +32,6 @@ export class MainPageComponent implements OnInit {
     this.service.getAllImages(tags).subscribe(r => {
       this.allImages = r;
     });
-
   }
 
 }

@@ -12,10 +12,22 @@ export class ImagesBlockComponent {
   @Input()
   allImages;
 
+  @Input()
+  favourite = false;
+
+  @Input()
+  removeFromFavourite = null;
+
   constructor(private service: ServerApiService, private testService: TestServiceService, private helperService: HelperService) { }
 
-  buttonClickHeader(isFavourite, imgId): void {
-    isFavourite ? this.removeImgFromFavorites(imgId) : this.addImgToFavourites(imgId);
+  buttonClickHeader(imgId, isFavourite = false): void {
+    if (this.removeFromFavourite) {
+      this.removeFromFavourite(imgId);
+    } else {
+      console.log(1223);
+      console.log(isFavourite);
+      isFavourite ? this.removeImgFromFavorites(imgId) : this.addImgToFavourites(imgId);
+    }
   }
 
   addImgToFavourites(imgId): void {
