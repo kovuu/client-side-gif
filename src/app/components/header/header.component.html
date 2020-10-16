@@ -1,28 +1,10 @@
-<!--<div class="header">-->
-<!--  <div class="container">-->
-<!--    <div class="header-content">-->
-<!--  <nav>-->
-<!--    <ul class="menu">-->
-<!--      <li class="menu-link" [routerLink]="['/']"><span>Main Page</span></li>-->
-<!--      <li class="menu-link" [routerLink]="['/profile/', userId]"><span>My profile</span></li>-->
-<!--      <li class="menu-link" [routerLink]="['/upload']">Upload Image</li>-->
-<!--    </ul>-->
-<!--  </nav>-->
-<!--  <div class="login-block menu">-->
-<!--  <span *ngIf="!userId" routerLink="/login" class="menu-link">Login</span>-->
-<!--  <span *ngIf="!userId" routerLink="/register" class="menu-link">Register</span>-->
-<!--    <span *ngIf="userId" (click)="logout()" class="menu-link">Logout</span>-->
-<!--  </div>-->
-<!--  </div>-->
-<!--  </div>-->
-<!--</div>-->
 <div class="header">
   <a href="#default" class="logo">
     GifTumbler
   </a>
   <div class="left-menu">
     <a  [routerLink]="['/']"><span>Main Page</span></a>
-    <a  [routerLink]="['/profile/', userId]"><span>My profile</span></a>
+    <a *ngIf="userId" [routerLink]="['/profile/', userId]"><span>My profile</span></a>
     <a  [routerLink]="['/upload']">Upload Image</a>
   </div>
   <div class="header-right">

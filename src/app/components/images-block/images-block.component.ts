@@ -8,7 +8,9 @@ import {HelperService} from '../../helper.service';
   templateUrl: './images-block.component.html',
   styleUrls: ['./images-block.component.css']
 })
-export class ImagesBlockComponent {
+export class ImagesBlockComponent implements OnInit{
+  userId: string;
+
   @Input()
   allImages;
 
@@ -19,6 +21,10 @@ export class ImagesBlockComponent {
   removeFromFavourite = null;
 
   constructor(private service: ServerApiService, private testService: TestServiceService, private helperService: HelperService) { }
+
+  ngOnInit(): void {
+    this.helperService.loginStatus$.subscribe(r => this.userId = localStorage.getItem('userId'));
+  }
 
   buttonClickHeader(imgId, isFavourite = false): void {
     if (this.removeFromFavourite) {

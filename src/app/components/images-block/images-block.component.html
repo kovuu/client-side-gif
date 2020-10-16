@@ -1,7 +1,7 @@
 <div class="images-block" >
   <div *ngFor="let image of allImages" class="image">
     <img *ngIf="image.path" [src]="image.path"  alt="12">
-    <button (click)="buttonClickHeader(image.id, image.favourite)" class="btn btn-primary">
+    <button *ngIf="userId" (click)="buttonClickHeader(image.id, image.favourite)" class="btn btn-primary">
       <span *ngIf="image.favourite  || favourite">Remove from Favourites</span>
       <span *ngIf="!image.favourite && !favourite">Add to Favourites</span>
     </button>
