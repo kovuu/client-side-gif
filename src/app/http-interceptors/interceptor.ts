@@ -12,11 +12,13 @@ export class Interceptor implements HttpInterceptor {
     console.log(req.url);
 
     if (localStorage.getItem('token') && localStorage.getItem('userId') && req.url.includes('afternoon-fjord-08150')) {
+      console.log('withHeaders');
       authReq = req.clone({
         headers: req.headers.set('Authorization', localStorage.getItem('token'))
           .set('x-userid', localStorage.getItem('userId'))
       });
     }
+
 
 
     return next.handle(authReq).pipe(
