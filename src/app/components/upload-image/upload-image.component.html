@@ -1,7 +1,7 @@
-<p>Загрузите фотографию по ссылке или с компьютера</p>
+<p>Upload a photo from a link or from a computer</p>
 <form [formGroup]="uploadForm" (ngSubmit)="uploadImage(uploadForm.value)" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="image">С компьютера</label>
+    <label for="image">From a computer</label>
     <input
       style="display: none"
       type="file"
@@ -16,12 +16,12 @@
 
   </div>
   <div class="form-group">
-    <label  for="img-link">По ссылке</label>
+    <label  for="img-link">From a link</label>
 
     <input id="img-link" type="text" formControlName="image_url" (change)="downloadImage($event)">
   </div>
   <div class="form-group">
-    <label  for="tags">Добавить теги для картинки через #</label>
+    <label  for="tags">Add tags for pictures via #</label>
 
     <input id="tags" type="text" formControlName="tags">
   </div>

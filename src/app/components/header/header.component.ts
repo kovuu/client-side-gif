@@ -7,7 +7,7 @@ import {HelperService} from "../../helper.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userId;
+  userId = localStorage.getItem('userId');
   constructor(private helperService: HelperService) {}
 
   ngOnInit(): void {

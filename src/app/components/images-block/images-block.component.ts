@@ -9,7 +9,7 @@ import {HelperService} from '../../helper.service';
   styleUrls: ['./images-block.component.css']
 })
 export class ImagesBlockComponent implements OnInit{
-  userId: string;
+  userId = localStorage.getItem('userId');
 
   @Input()
   allImages;
