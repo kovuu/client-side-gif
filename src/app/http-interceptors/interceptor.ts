@@ -11,7 +11,7 @@ export class Interceptor implements HttpInterceptor {
     let authReq = req.clone();
     console.log(req.url);
 
-    if (localStorage.getItem('token') && localStorage.getItem('userId') && req.url.includes('localhost:4000')) {
+    if (localStorage.getItem('token') && localStorage.getItem('userId') && req.url.includes('afternoon-fjord-08150')) {
       authReq = req.clone({
         headers: req.headers.set('Authorization', localStorage.getItem('token'))
           .set('x-userid', localStorage.getItem('userId'))
