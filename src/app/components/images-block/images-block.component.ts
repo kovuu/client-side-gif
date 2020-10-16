@@ -24,8 +24,6 @@ export class ImagesBlockComponent {
     if (this.removeFromFavourite) {
       this.removeFromFavourite(imgId);
     } else {
-      console.log(1223);
-      console.log(isFavourite);
       isFavourite ? this.removeImgFromFavorites(imgId) : this.addImgToFavourites(imgId);
     }
   }

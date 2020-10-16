@@ -32,9 +32,7 @@ export class ServerApiService {
   uploadImage(image, data): Observable<any> {
     const uploadData = new FormData();
     uploadData.append('image', image);
-    console.log(data.tags);
     uploadData.append('tags', data.tags);
-    console.log(uploadData.get('tags'));
     return this.http.post(this.baseURL + '/upload', uploadData);
   }
 

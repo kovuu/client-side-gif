@@ -12,7 +12,6 @@ export class UserPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: ServerApiService) { }
 
   ngOnInit(): void {
-    this.service.getUser(this.route.snapshot.params.id).subscribe(res => console.log(res));
   }
 
 }

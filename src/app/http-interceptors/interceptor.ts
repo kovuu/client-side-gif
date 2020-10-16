@@ -9,10 +9,8 @@ export class Interceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req.clone();
-    console.log(req.url);
 
     if (localStorage.getItem('token') && localStorage.getItem('userId') && req.url.includes('dry-retreat-01229')) {
-      console.log('withHeaders');
       authReq = req.clone({
         headers: req.headers.set('Authorization', localStorage.getItem('token'))
           .set('x-userid', localStorage.getItem('userId'))
@@ -31,7 +29,6 @@ export class Interceptor implements HttpInterceptor {
           reason: error && error.error ? error.error : '',
           status: error.status
         };
-        console.log(data.reason);
         return throwError(data);
       })
 

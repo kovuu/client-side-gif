@@ -24,7 +24,6 @@ export class SearchComponent implements OnInit {
   }
 
   searchByTags(data): void {
-    console.log(31);
     this.tags.emit(data.tags);
     // this.helperService.filteredByTagsImages$.next();
   }

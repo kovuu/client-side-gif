@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
   constructor(private helperService: HelperService) {}
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('userId'));
     this.helperService.loginStatus$.subscribe(r => this.userId = localStorage.getItem('userId'));
   }
 
