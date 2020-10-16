@@ -15,6 +15,10 @@ export class UploadImageComponent  {
   imageLink: string;
   message: string;
   status = false;
+  link = 'link';
+  comp = 'comp';
+  showInputFromComp = false;
+  showInputFromLink = false;
 
   constructor(private formBuilder: FormBuilder, private apiService: ServerApiService,  private route: Router, private testService: TestServiceService) {
     this.uploadForm = this.formBuilder.group({
@@ -68,6 +72,20 @@ export class UploadImageComponent  {
   private getErrorResponse(error): void {
     this.status = false;
     this.message = error.reason.message;
+  }
+
+  handleRadio(event): void {
+    const mode = event.target.defaultValue;
+    if (mode === 'comp') {
+      this.showInputFromComp = true;
+      this.showInputFromLink = false;
+    } else if (mode === 'link') {
+      this.showInputFromComp = false;
+      this.showInputFromLink = true;
+    }
+    this.uploadForm.reset();
+    this.imageLink = null;
+    this.selectedImage = null;
   }
 }
 

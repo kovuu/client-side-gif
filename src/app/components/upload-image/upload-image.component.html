@@ -1,6 +1,11 @@
 <p>Upload a photo from a link or from a computer</p>
+
 <form [formGroup]="uploadForm" (ngSubmit)="uploadImage(uploadForm.value)" enctype="multipart/form-data">
   <div class="form-group">
+    <input name="uploadType" [value]="comp" type="radio" (change)="handleRadio($event)">Upload from computer
+    <input name="uploadType" [value]="link" type="radio" (change)="handleRadio($event)">Upload using link
+  </div>
+  <div *ngIf="showInputFromComp" class="form-group">
     <label for="image">From a computer</label>
     <input
       style="display: none"
@@ -15,11 +20,12 @@
     <button (click)="fileInput.click()" type="button">Select File</button>
 
   </div>
-  <div class="form-group">
+  <div *ngIf="showInputFromLink" class="form-group">
     <label  for="img-link">From a link</label>
 
     <input id="img-link" type="text" formControlName="image_url" (change)="downloadImage($event)">
   </div>
+  <div *ngIf="imageLink || selectedImage">
   <div class="form-group">
     <label  for="tags">Add tags for pictures via #</label>
 
@@ -27,6 +33,6 @@
   </div>
 
   <button type="submit" class="btn btn-primary">Upload</button>
-
+  </div>
 </form>
 <app-alert *ngIf="message"  [status]="status" [message]="message"></app-alert>
