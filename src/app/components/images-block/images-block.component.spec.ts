@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImagesBlockComponent } from './images-block.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('ImagesBlockComponent', () => {
   let component: ImagesBlockComponent;
@@ -8,7 +10,9 @@ describe('ImagesBlockComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImagesBlockComponent ]
+      declarations: [ ImagesBlockComponent ],
+      providers: [HttpClientModule],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   });

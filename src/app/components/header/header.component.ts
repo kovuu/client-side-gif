@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HelperService} from "../../helper.service";
+import {HelperService} from '../../helper.service';
 
 @Component({
   selector: 'app-header',

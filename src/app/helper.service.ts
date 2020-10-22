@@ -10,12 +10,6 @@ export class HelperService {
   filteredByTagsImages$ = new Subject();
   loginStatus$ = new Subject();
 
-  constructor() { }
-
-  updateAllImages(): void {
-    this.allImages$.next(true);
-  }
-
   updateFavouriteImages(): void {
     this.favouriteImages$.next();
   }

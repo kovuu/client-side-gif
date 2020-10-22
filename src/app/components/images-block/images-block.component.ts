@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ServerApiService} from '../../server-api.service';
-import {TestServiceService} from '../../test-service.service';
 import {HelperService} from '../../helper.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class ImagesBlockComponent implements OnInit{
   @Input()
   removeFromFavourite = null;
 
-  constructor(private service: ServerApiService, private testService: TestServiceService, private helperService: HelperService) { }
+  constructor(private service: ServerApiService,  private helperService: HelperService) { }
 
   ngOnInit(): void {
     this.helperService.loginStatus$.subscribe(r => this.userId = localStorage.getItem('userId'));

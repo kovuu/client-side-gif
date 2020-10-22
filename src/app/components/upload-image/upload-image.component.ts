@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ServerApiService} from '../../server-api.service';
 import {Router} from '@angular/router';
-import {TestServiceService} from '../../test-service.service';
 
 @Component({
   selector: 'app-upload-image',
@@ -20,7 +19,7 @@ export class UploadImageComponent  {
   showInputFromComp = false;
   showInputFromLink = false;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ServerApiService,  private route: Router, private testService: TestServiceService) {
+  constructor(private formBuilder: FormBuilder, private apiService: ServerApiService,  private route: Router) {
     this.uploadForm = this.formBuilder.group({
       image: [''],
       image_url: [''],
