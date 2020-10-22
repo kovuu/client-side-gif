@@ -1,27 +1,47 @@
-# ClientSideGif
+# Gif Service
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
+Simple GIF sharing app
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To deploy the application on a local machine, 
+enter your server url data in src/app/const/connect.ts.
 
-## Code scaffolding
+### Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Make sure you have NodeJS, @angular-cli and npm installed before starting the program.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Installing
 
-## Running unit tests
+After you prepare your connect.ts you can start installing dependencies on the server with the command below
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    npm install
 
-## Running end-to-end tests
+After installing you can start server:
+    
+    ng serve
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Running the tests
 
-## Further help
+Unit tests are run by the command below:
+    
+    ng test
+    
+## Deployment
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Deploy instruction:
+
+1. Change your connect.ts consts to your server data(server url and name of heroku server project)
+2. create new Heroku project
+    
+        heroku container:login
+        heroku create 
+       
+3. Since we have configured our project, we can push our docker image to the heroku server and release it
+
+        heroku container:push web -a <name-of-your-heroku-project>
+        heroku container:release web -a <name-of-your-heroku-project>
+        heroku open        
+
+        

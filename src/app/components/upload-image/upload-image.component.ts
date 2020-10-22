@@ -66,7 +66,9 @@ export class UploadImageComponent  {
   private getResponse(response): void {
     this.status = true;
     this.message = response.message;
-    this.testService.subject$.next(true);
+    setTimeout(() => {
+      this.message = null;
+    }, 3000);
   }
 
   private getErrorResponse(error): void {
